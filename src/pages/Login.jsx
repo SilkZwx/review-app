@@ -36,6 +36,7 @@ export const Login = () => {
         <div className="field input-field">
           <input
             type="email"
+            name="email"
             placeholder="Email"
             className="input"
             onChange={handleEmailChange}
@@ -45,6 +46,7 @@ export const Login = () => {
         <div className="field input-field">
           <input
             type="password"
+            name="password"
             placeholder="Password"
             className="password"
             onChange={handlePasswordChange}
