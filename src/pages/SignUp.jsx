@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import "./SignUp.scss";
+import { EmailInput } from "../components/EmailInput";
+import { PasswordInput } from "../components/PasswordInput";
+import { NameInput } from "../components/NameInput";
+import { IconInput } from "../components/IconInput";
 
 export const SignUp = () => {
   const navigate = useNavigate();
@@ -58,40 +62,10 @@ export const SignUp = () => {
     <div className="signup-form">
       <header>signUp</header>
       <form onSubmit={onSignUp}>
-        <div className="field input-field">
-          <input
-            type="file"
-            accept="image/png, image/jpeg"
-            className="input"
-            onChange={handleIconChange}
-          />
-        </div>
-        <div className="field input-field">
-          <input
-            type="text"
-            placeholder="Name"
-            className="input"
-            onChange={handleNameChange}
-          />
-        </div>
-        <div className="field input-field">
-          <input
-            type="email"
-            placeholder="Email"
-            className="input"
-            onChange={handleEmailChange}
-          />
-        </div>
-
-        <div className="field input-field">
-          <input
-            type="password"
-            placeholder="Password"
-            className="password"
-            onChange={handlePasswordChange}
-          />
-          <i className="bx bx-hide eye-icon"></i>
-        </div>
+        <IconInput handleIconChange={handleIconChange} />
+        <NameInput handleNameChange={handleNameChange} />
+        <EmailInput handleEmailChange={handleEmailChange} />
+        <PasswordInput handlePasswordChange={handlePasswordChange} />
 
         <div className="field button-field">
           <button>signUp</button>

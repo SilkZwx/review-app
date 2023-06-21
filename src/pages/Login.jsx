@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import "./Login.scss";
 import { url } from "../env";
+import { EmailInput } from "../components/EmailInput";
+import { PasswordInput } from "../components/PasswordInput";
 
 export const Login = () => {
   const auth = useSelector((state) => state.auth.isSignIn);
@@ -33,27 +35,8 @@ export const Login = () => {
     <div className="login-form">
       <header>Login</header>
       <form onSubmit={onSignIn}>
-        <div className="field input-field">
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            className="input"
-            onChange={handleEmailChange}
-          />
-        </div>
-
-        <div className="field input-field">
-          <input
-            type="password"
-            name="password"
-            placeholder="Password"
-            className="password"
-            onChange={handlePasswordChange}
-          />
-          <i className="bx bx-hide eye-icon"></i>
-        </div>
-
+        <EmailInput handleEmailChange={handleEmailChange} />
+        <PasswordInput handlePasswordChange={handlePasswordChange} />
         <div className="field button-field">
           <button>Login</button>
         </div>

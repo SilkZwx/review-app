@@ -1,0 +1,23 @@
+.field {
+  position: relative;
+  height: 50px;
+  width: 100%;
+  margin-top: 20px;
+  border-radius: 6px;
+
+  input {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+    outline: none;
+    padding: 0 15px;
+    border: 1px solid#CACACA;
+
+    &:focus {
+      border-bottom-width: 2px;
+    }
+  }
+}
