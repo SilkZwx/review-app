@@ -1,12 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import { Login } from './pages/Login';
+/**
+ * @jest-environment jsdom
+ */
+import { render, screen } from "@testing-library/react";
+import "@testing-library/jest-dom";
+import { EmailInput } from "./components/EmailInput";
 
-describe('Login', () => {
-  test('render Login component', () => {
-      render(<Login />);
-    const emailInput = screen.getByRole('input', { name: /email/i});
+describe("Email component", () => {
+  test("Exist email component", () => {
+    render(
+      <EmailInput />
+    );
+    const emailInput = screen.getByRole("textbox", { name: /email/i });
     expect(emailInput).toBeInTheDocument();
-    const passwordInput = screen.getByRole('input', { name: /password/i});
-    expect(passwordInput).toBeInTheDocument();
   });
 });
