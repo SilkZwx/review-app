@@ -1,4 +1,4 @@
-.field {
+.email-field {
   position: relative;
   height: 50px;
   width: 100%;
@@ -19,5 +19,11 @@
     &:focus {
       border-bottom-width: 2px;
     }
+  }
+
+  p {
+    margin: auto;
+    font-size: 12px;
+    color: red;
   }
 }

@@ -1,13 +1,14 @@
 import "./PasswordInput.scss"
 
 export const PasswordInput = (props) => {
+  const handlePasswordChange = (e) => {props.setPassword(e.target.value)}
   return (
-    <div className="field">
+    <div className="password-field">
       <input
         type="password"
         placeholder="Password"
         className="input"
-        onChange={props.handlePasswordChange}
+        onChange={handlePasswordChange}
       />
     </div>
   )

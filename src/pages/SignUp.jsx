@@ -18,10 +18,6 @@ export const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [icon, setIcon] = useState(null);
-  const handleNameChange = (e) => setName(e.target.value);
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
-  const handleIconChange = (e) => setIcon(e.target.files);
   const onSignUp = (e) => {
     e.preventDefault();
     const data = { name: name, email: email, password: password };
@@ -62,12 +58,12 @@ export const SignUp = () => {
     <div className="signup-form">
       <header>signUp</header>
       <form onSubmit={onSignUp}>
-        <IconInput handleIconChange={handleIconChange} />
-        <NameInput handleNameChange={handleNameChange} />
-        <EmailInput handleEmailChange={handleEmailChange} />
-        <PasswordInput handlePasswordChange={handlePasswordChange} />
+        <IconInput setIcon={setIcon} />
+        <NameInput setName={setName} />
+        <EmailInput setEmail={setEmail} />
+        <PasswordInput setPassword={setPassword} />
 
-        <div className="field button-field">
+        <div className="button-field">
           <button>signUp</button>
         </div>
       </form>

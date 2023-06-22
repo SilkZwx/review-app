@@ -1,13 +1,14 @@
 import "./NameInput.scss"
 
 export const NameInput = (props) => {
+  const handleNameChange = (e) => {props.setName(e.target.value)}
   return (
-    <div className="field">
+    <div className="name-field">
       <input
         type="text"
         placeholder="Name"
         className="input"
-        onChange={props.handleNameChange}
+        onChange={handleNameChange}
       />
     </div>
   )

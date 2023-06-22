@@ -14,8 +14,6 @@ export const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const handleEmailChange = (e) => setEmail(e.target.value);
-  const handlePasswordChange = (e) => setPassword(e.target.value);
   const onSignIn = (e) => {
     e.preventDefault();
     const data = { email: email, password: password };
@@ -35,9 +33,9 @@ export const Login = () => {
     <div className="login-form">
       <header>Login</header>
       <form onSubmit={onSignIn}>
-        <EmailInput handleEmailChange={handleEmailChange} />
-        <PasswordInput handlePasswordChange={handlePasswordChange} />
-        <div className="field button-field">
+        <EmailInput setEmail={setEmail} />
+        <PasswordInput setPassword={setPassword} />
+        <div className="button-field">
           <button>Login</button>
         </div>
       </form>
