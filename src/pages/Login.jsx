@@ -20,8 +20,9 @@ export const Login = () => {
     axios
       .post(`${url}/signin`, data)
       .then((res) => {
-        dispatch(signIn());
-        console.log(res);
+        dispatch(signIn(encodeURIComponent(res.data.token)));
+        // console.log(res);
+        console.log(encodeURIComponent(res.data.token));
         navigate("/");
       })
       .catch((err) => {
