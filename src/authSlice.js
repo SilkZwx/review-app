@@ -8,8 +8,17 @@ export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    signIn: (state, action) => {
-      state.isSignIn = action.payload;
+    signIn: {
+      reducer: (state, action) => {
+        state.isSignIn = action.payload;
+      },
+      prepare: (auth) => {
+        if (auth) {
+          return { payload: auth }
+        } else{
+          return { payload: null }
+        }
+      }
     },
     signOut: (state) => {
       state.isSignIn = null;
