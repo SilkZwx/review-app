@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
@@ -44,9 +44,9 @@ export const Login = () => {
       <div className="form-link">
         <span>
           Don't have an account?{" "}
-          <a href="signup" className="link signup-link">
+          <Link to="signup" className="link signup-link">
             signUp
-          </a>
+          </Link>
         </span>
       </div>
     </div>

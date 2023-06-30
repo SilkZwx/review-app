@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
@@ -28,24 +28,24 @@ export const SignUp = () => {
         console.log(res);
         return res.data.token;
       })
-      .then((res)=>{
+      .then((res) => {
         if (icon !== null) {
           const file = new FormData();
           file.append("icon", icon[0]);
-          
+
           axios
-          .post(`${url}/uploads`, file, {
-            headers: {
-              Authorization: `Bearer ${res}`,
-            },
-          })
-          .then((res) => {
-            console.log(res);
-          })
-          .catch((err) => {
-            console.log(`icon error ${err}`);
-            console.log(auth);
-          });
+            .post(`${url}/uploads`, file, {
+              headers: {
+                Authorization: `Bearer ${res}`,
+              },
+            })
+            .then((res) => {
+              console.log(res);
+            })
+            .catch((err) => {
+              console.log(`icon error ${err}`);
+              console.log(auth);
+            });
         }
         navigate("/");
       })
@@ -71,9 +71,9 @@ export const SignUp = () => {
       <div className="form-link">
         <span>
           Already have an account?{" "}
-          <a href="login" className="link login-link">
+          <Link to="login" className="link login-link">
             Login
-          </a>
+          </Link>
         </span>
       </div>
     </div>
