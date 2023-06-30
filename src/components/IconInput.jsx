@@ -1,5 +1,22 @@
+import Compressor from "compressorjs";
+
 export const IconInput = (props) => {
-  const handleIconChange = (e) => props.setIcon(e.target.files);
+  const handleIconChange = (e) => {
+    const file = e.target.files[0];
+    console.log(file);
+    new Compressor(file, {
+      maxHeight: 1024,
+      maxWidth: 1024,
+      success(result) {
+        const fileResult = new File([result], file.name, {
+          type: result.type,
+          lastModified: new Date(),
+        });
+        props.setIcon(fileResult);
+        console.log(fileResult);
+      },
+    });
+  };
   return (
     <div className="field input-field">
       <input
@@ -9,5 +26,5 @@ export const IconInput = (props) => {
         onChange={handleIconChange}
       />
     </div>
-  )
-}
+  );
+};

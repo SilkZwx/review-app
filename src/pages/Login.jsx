@@ -9,7 +9,6 @@ import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 
 export const Login = () => {
-  const auth = useSelector((state) => state.auth.isSignIn);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -44,7 +43,7 @@ export const Login = () => {
       <div className="form-link">
         <span>
           Don't have an account?{" "}
-          <Link to="signup" className="link signup-link">
+          <Link to="/signup" className="link signup-link">
             signUp
           </Link>
         </span>

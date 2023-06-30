@@ -29,9 +29,12 @@ export const SignUp = () => {
         return res.data.token;
       })
       .then((res) => {
+        console.log(res);
         if (icon !== null) {
           const file = new FormData();
-          file.append("icon", icon[0]);
+          file.append("icon", icon);
+          console.log(icon);
+          console.log(file);
 
           axios
             .post(`${url}/uploads`, file, {
@@ -44,7 +47,6 @@ export const SignUp = () => {
             })
             .catch((err) => {
               console.log(`icon error ${err}`);
-              console.log(auth);
             });
         }
         navigate("/");
@@ -71,7 +73,7 @@ export const SignUp = () => {
       <div className="form-link">
         <span>
           Already have an account?{" "}
-          <Link to="login" className="link login-link">
+          <Link to="/login" className="link login-link">
             Login
           </Link>
         </span>
