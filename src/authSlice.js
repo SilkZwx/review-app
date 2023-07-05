@@ -1,8 +1,8 @@
-import { createSlice} from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  isSignIn: null
-}
+  isSignIn: null,
+};
 
 export const authSlice = createSlice({
   name: "auth",
@@ -14,16 +14,16 @@ export const authSlice = createSlice({
       },
       prepare: (auth) => {
         if (auth) {
-          return { payload: auth }
-        } else{
-          return { payload: null }
+          return { payload: auth };
+        } else {
+          return { payload: null };
         }
-      }
+      },
     },
     signOut: (state) => {
       state.isSignIn = null;
     },
-  }
+  },
 });
 
 export const { signIn, signOut } = authSlice.actions;

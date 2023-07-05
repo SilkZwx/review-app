@@ -3,7 +3,6 @@ import Compressor from "compressorjs";
 export const IconInput = (props) => {
   const handleIconChange = (e) => {
     const file = e.target.files[0];
-    console.log(file);
     new Compressor(file, {
       maxHeight: 1024,
       maxWidth: 1024,
@@ -13,7 +12,6 @@ export const IconInput = (props) => {
           lastModified: new Date(),
         });
         props.setIcon(fileResult);
-        console.log(fileResult);
       },
     });
   };

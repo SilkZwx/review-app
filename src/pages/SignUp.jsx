@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { signIn } from "../authSlice";
 import "./SignUp.scss";
@@ -8,12 +8,14 @@ import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { NameInput } from "../components/NameInput";
 import { IconInput } from "../components/IconInput";
+import { useCookies } from "react-cookie";
 
 export const SignUp = () => {
   const navigate = useNavigate();
   const url = process.env.REACT_APP_API_URL;
-  const auth = useSelector((state) => state.auth);
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const dispatch = useDispatch();
+  const auth = useSelector((state) => state.auth.isSignIn);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -25,16 +27,14 @@ export const SignUp = () => {
       .post(`${url}/users`, data)
       .then((res) => {
         dispatch(signIn(res.data.token));
+        setCookie("token", res.data.token, { path: "/" , secure: true});
         console.log(res);
         return res.data.token;
       })
       .then((res) => {
-        console.log(res);
         if (icon !== null) {
           const file = new FormData();
           file.append("icon", icon);
-          console.log(icon);
-          console.log(file);
 
           axios
             .post(`${url}/uploads`, file, {
@@ -55,6 +55,12 @@ export const SignUp = () => {
         console.log(`user setting error ${err}`);
       });
   };
+
+  useEffect(() => {
+    if (auth !== null) {
+      navigate("/");
+    }
+  }, [auth]);
 
   return (
     <div className="signup-form">
