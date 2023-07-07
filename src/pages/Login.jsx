@@ -25,7 +25,9 @@ export const Login = () => {
         dispatch(signIn(encodeURIComponent(res.data.token)));
         // console.log(res);
         console.log(encodeURIComponent(res.data.token));
-        setCookie("token", res.data.token, { path: "/", secure: true });
+        const expires = new Date();
+        expires.setTime(expires.getTime() + (24 * 60 * 60 * 1000))
+        setCookie("token", res.data.token, { path: "/", secure: true, expires: expires });
         navigate("/");
       })
       .catch((err) => {

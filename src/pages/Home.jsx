@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
+import {Header} from "../components/Header";
 import "./Home.scss";
 
 export const Home = () => {
@@ -34,7 +35,7 @@ export const Home = () => {
 
   return (
     <div>
-      <h1 className="site-header">Home</h1>
+      <Header className="site-header" />
       <ul className="post">
         {reviewList.map((review, key) => (
           <li key={key} className="post__item">

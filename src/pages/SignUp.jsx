@@ -27,7 +27,7 @@ export const SignUp = () => {
       .post(`${url}/users`, data)
       .then((res) => {
         dispatch(signIn(res.data.token));
-        setCookie("token", res.data.token, { path: "/" , secure: true});
+        setCookie("token", res.data.token, { path: "/", secure: true });
         console.log(res);
         return res.data.token;
       })
