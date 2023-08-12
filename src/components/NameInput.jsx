@@ -6,7 +6,7 @@ export const NameInput = (props) => {
     <div className="name-field">
       <input
         type="text"
-        placeholder="Name"
+        placeholder={props.placeholder}
         className="input"
         onChange={handleNameChange}
       />

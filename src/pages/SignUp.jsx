@@ -67,7 +67,7 @@ export const SignUp = () => {
       <header>signUp</header>
       <form onSubmit={onSignUp}>
         <IconInput setIcon={setIcon} />
-        <NameInput setName={setName} />
+        <NameInput setName={setName} placeholder={"Name"} />
         <EmailInput setEmail={setEmail} />
         <PasswordInput setPassword={setPassword} />
 
