@@ -20,6 +20,11 @@ export const Header = () => {
     dispatch(signOut());
     navigate("/login");
   };
+  const logout = () => {
+    removeCookie("token");
+    dispatch(signOut());
+    navigate("/");
+  };
 
   useEffect(() => {
     axios
@@ -39,9 +44,12 @@ export const Header = () => {
         <h1>書籍レビュー</h1>
       </Link>
       {isSignIn ? (
-        <Link to="/profile">
-          <img src={iconUrl} />
-        </Link>
+        <>
+          <button onClick={logout}>ログアウト</button>
+          <Link to="/profile">
+            <img src={iconUrl} />
+          </Link>
+        </>
       ) : (
         <button onClick={login}>ログイン</button>
       )}
