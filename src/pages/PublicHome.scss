@@ -1,0 +1,28 @@
+.post {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 0;
+  list-style: none;
+  .post__item {
+    flex: 40%;
+    padding: 20px;
+  }
+}
+
+.button {
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 28px;
+	margin: 0 10px 10px 0;
+  border-radius: 6px;
+  border: none;
+
+  color: #fff;
+  background: linear-gradient(180deg, #4b91f7 0%, #367af6 100%);
+  background-origin: border-box;
+
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}

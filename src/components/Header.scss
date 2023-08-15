@@ -5,7 +5,13 @@
   padding: 5px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  // 画像の横にボタンを配置するためにflexを使う
+  button {
+    margin-left: auto;
+
+  }
   img {
+    margin: 0 10px;
     width: 75px;
     height: 75px;
   }

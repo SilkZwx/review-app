@@ -1,20 +1,22 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Login } from "../pages/Login";
 import { SignUp } from "../pages/SignUp";
-import { Home } from "../pages/Home";
+import { PublicHome } from "../pages/PublicHome";
+import { PrivateHome } from "../pages/PrivateHome";
 import { UserProfile } from "../pages/UserProfile";
+import { useSelector } from "react-redux";
 
 export const Router = () => {
-  // const auth = useAuth((state) => state.auth.isSignedIn);
+  const auth = useSelector((state) => state.auth.isSignedIn);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/" element={<Home />} />
+        {/* <Route path="/" element={<Home />} /> */}
         <Route path="/profile" element={<UserProfile />} />
-        {/* <Route path="/" element={auth ? <Home /> : <Navigate to="/login" />} /> */}
+        <Route path="/" element={auth ? <PrivateHome /> : <PublicHome />} />
       </Routes>
     </BrowserRouter>
   );

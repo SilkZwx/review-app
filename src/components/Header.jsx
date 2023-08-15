@@ -16,14 +16,12 @@ export const Header = () => {
   const [iconUrl, setIconUrl] = useState(null);
   const [isSignIn, setIsSignIn] = useState(false);
   const login = () => {
-    removeCookie("token");
-    dispatch(signOut());
     navigate("/login");
   };
   const logout = () => {
     removeCookie("token");
     dispatch(signOut());
-    navigate("/");
+    navigate("/login");
   };
 
   useEffect(() => {

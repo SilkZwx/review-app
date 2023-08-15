@@ -5,33 +5,24 @@ import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
 import {Header} from "../components/Header";
-import "./Home.scss";
+import "./PublicHome.scss";
 
-export const Home = () => {
-  const auth = useSelector((state) => state.auth.isSignIn);
+export const PublicHome = () => {
   const navigate = useNavigate();
   const [reviewList, setReviewList] = useState([]);
   const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    if (auth === null) {
-      navigate("/login");
-    }
-  }, [auth]);
 
   useEffect(() => {
     axios
-      .get(`${url}/books?offset=${offset}`, {
-        headers: { Authorization: `Bearer ${auth}` },
-      })
+      .get(`${url}/public/books?offset=${offset}`)
       .then((res) => {
         console.log(res);
         setReviewList(res.data);
       })
       .catch((err) => {
         console.log(err);
-        console.log(auth);
       });
-  }, [auth, offset]);
+  }, [offset]);
 
   return (
     <div>
