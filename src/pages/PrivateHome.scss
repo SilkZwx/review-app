@@ -10,6 +10,17 @@
   }
 }
 
+.post-image {
+  position: fixed;
+  height: 80px;
+  width: 80px;
+  bottom: 0;
+  right: 0;
+  margin: 20px; /* 任意のマージン */
+  z-index: 100; /* 他の要素より前に表示させる場合 */
+}
+
+
 .button {
   flex-direction: column;
   align-items: center;

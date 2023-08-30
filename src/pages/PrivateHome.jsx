@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
 import {Header} from "../components/Header";
+import icon from "../images/PostIcon.png";
 import "./PrivateHome.scss";
 
 export const PrivateHome = () => {
@@ -43,6 +44,12 @@ export const PrivateHome = () => {
           </li>
         ))}
       </ul>
+      
+      <img
+        className="post-image"
+        src={icon}
+        onClick={() => navigate("/new")}
+      />
       <button
         className="button next-button"
         onClick={() =>
