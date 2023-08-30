@@ -12,7 +12,7 @@ import { useCookies } from "react-cookie";
 export const Login = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.sessionToken);
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

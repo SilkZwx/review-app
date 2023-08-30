@@ -8,10 +8,10 @@ import "./UserProfile.scss";
 
 export const UserProfile = () => {
   const url = process.env.REACT_APP_API_URL;
-  const auth = useSelector((state) => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.sessionToken);
   const [name, setName] = useState("");
+  const [defaultName, setDefaultName] = useState("");
   const [NewiconUrl, setNewIconUrl] = useState(null);
-  const [DefaulticonUrl, setDefaultIconUrl] = useState(null);
   const onSubmit = (e) => {
     e.preventDefault();
     axios
@@ -22,6 +22,7 @@ export const UserProfile = () => {
       )
       .then((res) => {
         console.log(res);
+        setDefaultName(res.data.name);
       })
       .catch((err) => {
         console.log(`user setting error ${err}`);
@@ -48,8 +49,7 @@ export const UserProfile = () => {
     axios
       .get(`${url}/users`, { headers: { Authorization: `Bearer ${auth}` } })
       .then((res) => {
-        setName(res.data.name);
-        setDefaultIconUrl(res.data.iconUrl);
+        setDefaultName(res.data.name);
       })
       .catch((err) => {
         console.log(err);
@@ -59,10 +59,10 @@ export const UserProfile = () => {
   return (
     <div>
       <Header />
-      <h1>ユーザープロフィール</h1>
+      <h3>プロフィール編集</h3>
       <form onSubmit={onSubmit}>
-        <NameInput setName={setName} placeholder={name} />
-        <img src={DefaulticonUrl} />
+        <p>現在の名前: {defaultName}</p>
+        <NameInput setName={setName} placeholder={"Name"} />
         <IconInput setIcon={setNewIconUrl} />
         <button type="submit">変更</button>
       </form>

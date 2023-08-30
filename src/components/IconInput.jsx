@@ -1,4 +1,5 @@
 import Compressor from "compressorjs";
+import "./IconInput.scss"
 
 export const IconInput = (props) => {
   const handleIconChange = (e) => {
@@ -16,7 +17,7 @@ export const IconInput = (props) => {
     });
   };
   return (
-    <div className="field input-field">
+    <div className="input-field">
       <input
         type="file"
         accept="image/png, image/jpeg"

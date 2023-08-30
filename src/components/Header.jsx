@@ -9,7 +9,7 @@ import "./Header.scss";
 
 export const Header = () => {
   const url = process.env.REACT_APP_API_URL;
-  const auth = useSelector((state) => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.sessionToken);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);

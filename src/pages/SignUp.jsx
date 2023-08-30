@@ -15,7 +15,7 @@ export const SignUp = () => {
   const url = process.env.REACT_APP_API_URL;
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const dispatch = useDispatch();
-  const auth = useSelector((state) => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.sessionToken);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

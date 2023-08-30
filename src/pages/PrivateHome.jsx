@@ -8,7 +8,7 @@ import {Header} from "../components/Header";
 import "./PrivateHome.scss";
 
 export const PrivateHome = () => {
-  const auth = useSelector((state) => state.auth.isSignIn);
+  const auth = useSelector((state) => state.auth.sessionToken);
   const navigate = useNavigate();
   const [reviewList, setReviewList] = useState([]);
   const [offset, setOffset] = useState(0);
