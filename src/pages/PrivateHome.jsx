@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
-import {Header} from "../components/Header";
+import { Header } from "../components/Header";
 import icon from "../images/PostIcon.png";
 import "./PrivateHome.scss";
 
@@ -34,22 +34,42 @@ export const PrivateHome = () => {
       });
   }, [auth, offset]);
 
+  const handleReviewClick = (id) => {
+    axios
+      .post(
+        `${url}/logs`,
+        { selectBookId: id },
+        { headers: { Authorization: `Bearer ${auth}` } }
+      )
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    navigate(`/detail/${id}`);
+  };
+
   return (
     <div>
       <Header className="site-header" />
       <ul className="post">
         {reviewList.map((review, key) => (
-          <li key={key} className="post__item">
-            <Review title={review.title} review={review.review} reviewer={review.reviewer} />
+          <li
+            key={key}
+            className="post__item"
+            onClick={() => handleReviewClick(review.id)}
+          >
+            <Review
+              title={review.title}
+              review={review.review}
+              reviewer={review.reviewer}
+            />
           </li>
         ))}
       </ul>
-      
-      <img
-        className="post-image"
-        src={icon}
-        onClick={() => navigate("/new")}
-      />
+
+      <img className="post-image" src={icon} onClick={() => navigate("/new")} />
       <button
         className="button next-button"
         onClick={() =>

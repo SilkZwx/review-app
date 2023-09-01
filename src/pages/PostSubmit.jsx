@@ -2,9 +2,9 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import axios from "axios";
-import "./Post.scss";
+import "./PostSubmit.scss";
 
-export const Post = () => {
+export const PostSubmit = () => {
   const auth = useSelector((state) => state.auth.sessionToken);
   const url = process.env.REACT_APP_API_URL;
   const [title, setTitle] = useState("");
