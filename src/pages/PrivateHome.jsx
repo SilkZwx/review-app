@@ -34,37 +34,13 @@ export const PrivateHome = () => {
       });
   }, [auth, offset]);
 
-  const handleReviewClick = (id) => {
-    axios
-      .post(
-        `${url}/logs`,
-        { selectBookId: id },
-        { headers: { Authorization: `Bearer ${auth}` } }
-      )
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    navigate(`/detail/${id}`);
-  };
-
   return (
     <div>
       <Header className="site-header" />
       <ul className="post">
         {reviewList.map((review, key) => (
-          <li
-            key={key}
-            className="post__item"
-            onClick={() => handleReviewClick(review.id)}
-          >
-            <Review
-              title={review.title}
-              review={review.review}
-              reviewer={review.reviewer}
-            />
+          <li key={key} className="post__item">
+            <Review review={review} />
           </li>
         ))}
       </ul>
