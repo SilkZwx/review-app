@@ -8,11 +8,19 @@
   // 画像の横にボタンを配置するためにflexを使う
   button {
     margin-left: auto;
-
   }
-  img {
-    margin: 0 10px;
-    width: 75px;
-    height: 75px;
+  .user-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    img {
+      margin: 0 10px;
+      width: 75px;
+      height: 75px;
+    }
+    .user-name {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
   }
 }
