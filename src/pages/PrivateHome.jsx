@@ -5,19 +5,16 @@ import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
 import { Header } from "../components/Header";
+import { useRedirectPublicUser } from "../hooks/redirect";
 import icon from "../images/PostIcon.png";
 import "./PrivateHome.scss";
 
 export const PrivateHome = () => {
+  useRedirectPublicUser();
   const auth = useSelector((state) => state.auth.sessionToken);
   const navigate = useNavigate();
   const [reviewList, setReviewList] = useState([]);
   const [offset, setOffset] = useState(0);
-  useEffect(() => {
-    if (auth === null) {
-      navigate("/login");
-    }
-  }, [auth]);
 
   useEffect(() => {
     axios
@@ -32,7 +29,7 @@ export const PrivateHome = () => {
         console.log(err);
         console.log(auth);
       });
-  }, [auth, offset]);
+  }, [auth, offset, navigate]);
 
   return (
     <div>
@@ -45,7 +42,12 @@ export const PrivateHome = () => {
         ))}
       </ul>
 
-      <img className="post-image" src={icon} onClick={() => navigate("/new")} />
+      <img
+        className="post-image"
+        src={icon}
+        onClick={() => navigate("/new")}
+        alt="Go to the post page"
+      />
       <button
         className="button next-button"
         onClick={() =>

@@ -1,14 +1,11 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
 import { url } from "../env";
 import { Review } from "../components/Review";
 import { Header } from "../components/Header";
 import "./PublicHome.scss";
 
 export const PublicHome = () => {
-  const navigate = useNavigate();
   const [reviewList, setReviewList] = useState([]);
   const [offset, setOffset] = useState(0);
 

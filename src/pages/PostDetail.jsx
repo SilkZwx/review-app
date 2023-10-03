@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import axios from "axios";
 import { Header } from "../components/Header";
+import { useRedirectPublicUser } from "../hooks/redirect";
 import "./PostDetail.scss";
 
 export const PostDetail = () => {
@@ -16,6 +17,8 @@ export const PostDetail = () => {
   const [detail, setDetail] = useState("");
   const [review, setReview] = useState("");
   const [reviewer, setReviewer] = useState("");
+
+  useRedirectPublicUser();
 
   useEffect(() => {
     axios

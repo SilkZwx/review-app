@@ -2,9 +2,11 @@ import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Header } from "../components/Header";
 import axios from "axios";
+import { useRedirectPublicUser } from "../hooks/redirect";
 import "./PostSubmit.scss";
 
 export const PostSubmit = () => {
+  useRedirectPublicUser();
   const auth = useSelector((state) => state.auth.sessionToken);
   const url = process.env.REACT_APP_API_URL;
   const [title, setTitle] = useState("");
@@ -73,8 +75,10 @@ export const PostSubmit = () => {
             onChange={(e) => setReview(e.target.value)}
           />
         </div>
-        <button type="submit" onClick={onSubmit}>投稿</button>
+        <button type="submit" onClick={onSubmit}>
+          投稿
+        </button>
       </form>
     </div>
   );
-}
+};

@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { signOut } from "../authSlice";
+import { signOut } from "../redux/authSlice";
 import "./Header.scss";
-import { removeName, removeIconUrl } from "../userSlice";
+import { removeName, removeIconUrl } from "../redux/userSlice";
+import { useEffect } from "react";
 
 export const Header = () => {
   const auth = useSelector((state) => state.auth.sessionToken);
@@ -22,6 +23,11 @@ export const Header = () => {
     dispatch(removeIconUrl());
   };
 
+  useEffect(() => {
+    console.log("auth", auth);
+    console.log("name", name);
+  });
+
   return (
     <div className="header">
       <Link to="/">
@@ -32,7 +38,7 @@ export const Header = () => {
           <button onClick={logout}>ログアウト</button>
           <div className="user-profile">
             <Link to="/profile">
-              <img src={iconUrl} />
+              <img src={iconUrl} alt="Go to the user profile page" />
             </Link>
             <div className="user-name">{name}</div>
           </div>

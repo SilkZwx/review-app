@@ -2,19 +2,20 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../authSlice";
-import { setName, setIconUrl } from "../userSlice";
+import { signIn } from "../redux/authSlice";
+import { setName, setIconUrl } from "../redux/userSlice";
 import "./Login.scss";
 import { url } from "../env";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
 import { useCookies } from "react-cookie";
+import { useRedirectPrivateUser } from "../hooks/redirect";
 
 export const Login = () => {
+  useRedirectPrivateUser();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.sessionToken);
-  const name = useSelector((state) => state.user.name);
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -23,8 +24,20 @@ export const Login = () => {
       .get(`${url}/users`, { headers: { Authorization: `Bearer ${auth}` } })
       .then((res) => {
         console.log(res);
+        const expires = new Date();
+        expires.setTime(expires.getTime() + 24 * 60 * 60 * 1000);
         dispatch(setName(res.data.name));
+        setCookie("name", res.data.name, {
+          path: "/",
+          secure: true,
+          expires: expires,
+        });
         dispatch(setIconUrl(res.data.iconUrl));
+        setCookie("iconUrl", res.data.iconUrl, {
+          path: "/",
+          secure: true,
+          expires: expires,
+        });
       })
       .catch((err) => {
         console.log(err);

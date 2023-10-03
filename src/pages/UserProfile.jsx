@@ -4,10 +4,12 @@ import { Header } from "../components/Header";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "axios";
-import { setName, setIconUrl } from "../userSlice";
+import { setName, setIconUrl } from "../redux/userSlice";
+import { useRedirectPublicUser } from "../hooks/redirect";
 import "./UserProfile.scss";
 
 export const UserProfile = () => {
+  useRedirectPublicUser();
   const url = process.env.REACT_APP_API_URL;
   const dispatch = useDispatch();
   const auth = useSelector((state) => state.auth.sessionToken);

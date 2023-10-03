@@ -2,7 +2,7 @@ import axios from "axios";
 import { useNavigate, Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { signIn } from "../authSlice";
+import { signIn } from "../redux/authSlice";
 import "./SignUp.scss";
 import { EmailInput } from "../components/EmailInput";
 import { PasswordInput } from "../components/PasswordInput";
@@ -60,7 +60,7 @@ export const SignUp = () => {
     if (auth !== null) {
       navigate("/");
     }
-  }, [auth]);
+  }, [auth, navigate]);
 
   return (
     <div className="signup-form">

@@ -14,12 +14,16 @@ export const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login" element={auth ? <PrivateHome /> : <Login />} />
+        <Route
+          index
+          path="/"
+          element={auth ? <PrivateHome /> : <PublicHome />}
+        />
+        <Route path="/login" element={<Login />} />
         <Route path="/signup" element={auth ? <PrivateHome /> : <SignUp />} />
-        <Route path="/profile" element={auth ? <UserProfile /> : <PublicHome />} />
-        <Route path="/new" element={auth ? <PostSubmit /> : <PublicHome />} />
-        <Route path="/detail/:id" element={auth ? <PostDetail /> : <PublicHome />} />
-        <Route index path="/" element={auth ? <PrivateHome /> : <PublicHome />} />
+        <Route path="/profile" element={<UserProfile />} />
+        <Route path="/new" element={<PostSubmit />} />
+        <Route path="/detail/:id" element={<PostDetail />} />
       </Routes>
     </BrowserRouter>
   );
