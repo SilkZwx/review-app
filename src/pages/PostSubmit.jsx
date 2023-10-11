@@ -59,7 +59,7 @@ export const PostSubmit = () => {
         </div>
         <div>
           <label htmlFor="detail">書籍の詳細</label>
-          <input
+          <textarea
             type="text"
             id="detail"
             value={detail}
@@ -68,7 +68,7 @@ export const PostSubmit = () => {
         </div>
         <div>
           <label htmlFor="review">レビュー</label>
-          <input
+          <textarea
             type="text"
             id="review"
             value={review}
