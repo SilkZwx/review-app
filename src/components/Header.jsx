@@ -23,11 +23,6 @@ export const Header = () => {
     dispatch(removeIconUrl());
   };
 
-  useEffect(() => {
-    console.log("auth", auth);
-    console.log("name", name);
-  });
-
   return (
     <div className="header">
       <Link to="/">

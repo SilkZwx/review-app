@@ -27,7 +27,6 @@ export const PrivateHome = () => {
       })
       .catch((err) => {
         console.log(err);
-        console.log(auth);
       });
   }, [auth, offset, navigate]);
 

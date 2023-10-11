@@ -1,6 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
 import { Header } from "../components/Header";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useRedirectPublicUser } from "../hooks/redirect";
 import "./PostSubmit.scss";
@@ -9,6 +10,7 @@ export const PostSubmit = () => {
   useRedirectPublicUser();
   const auth = useSelector((state) => state.auth.sessionToken);
   const url = process.env.REACT_APP_API_URL;
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
   const [link, setLink] = useState("");
   const [detail, setDetail] = useState("");
@@ -29,6 +31,7 @@ export const PostSubmit = () => {
       })
       .then((res) => {
         console.log(res);
+        navigate("/");
       })
       .catch((err) => {
         console.log(`post error ${err}`);

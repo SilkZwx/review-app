@@ -6,6 +6,7 @@ import { PrivateHome } from "../pages/PrivateHome";
 import { UserProfile } from "../pages/UserProfile";
 import { PostSubmit } from "../pages/PostSubmit";
 import { PostDetail } from "../pages/PostDetail";
+import { PostEdit } from "../pages/PostEdit";
 import { useSelector } from "react-redux";
 
 export const Router = () => {
@@ -24,6 +25,7 @@ export const Router = () => {
         <Route path="/profile" element={<UserProfile />} />
         <Route path="/new" element={<PostSubmit />} />
         <Route path="/detail/:id" element={<PostDetail />} />
+        <Route path="/edit/:id" element={<PostEdit />} />
       </Routes>
     </BrowserRouter>
   );

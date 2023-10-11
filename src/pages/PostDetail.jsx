@@ -10,7 +10,9 @@ export const PostDetail = () => {
   const url = process.env.REACT_APP_API_URL;
   const auth = useSelector((state) => state.auth.sessionToken);
   const { id } = useParams();
+  const navigate = useNavigate();
   const [isLoading, setIsLoading] = useState(true);
+  const [visible, setVisible] = useState(false);
 
   const [bookInfo, setBookInfo] = useState(null);
 
@@ -22,14 +24,21 @@ export const PostDetail = () => {
         headers: { Authorization: `Bearer ${auth}` },
       })
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setBookInfo(res.data);
+        if (res.data.isMine) {
+          setVisible(true);
+        }
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [id]);
+
+  const handleEditClick = () => {
+    navigate(`/edit/${id}`);
+  };
 
   if (isLoading) {
     return <div>loading...</div>;
@@ -42,7 +51,7 @@ export const PostDetail = () => {
         <div className="post-detail__title">タイトル</div>
         <p className="post-detail__title">{bookInfo.title}</p>
         <div className="post-detail__link">リンク</div>
-        <p className="post-detail__link">{bookInfo.link}</p>
+        <p className="post-detail__link">{bookInfo.url}</p>
         <div className="post-detail__reviewer">投稿者</div>
         <p className="post-detail__reviewer">{bookInfo.reviewer}</p>
         <div className="post-detail__review">レビュー</div>
@@ -50,6 +59,11 @@ export const PostDetail = () => {
         <div className="post-detail__detail">詳細</div>
         <p className="post-detail__detail">{bookInfo.detail}</p>
       </div>
+      {visible && (
+        <button className="post-detail__button" onClick={handleEditClick}>
+          編集
+        </button>
+      )}
     </div>
   );
 };
