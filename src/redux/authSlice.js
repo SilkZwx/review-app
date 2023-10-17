@@ -1,7 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
+import Cookies from "js-cookie";
+
+const token = Cookies.get("token");
 
 const initialState = {
-  sessionToken: null,
+  // クッキーから取得した認証情報を格納する
+  sessionToken: token ? token : null,
 };
 
 export const authSlice = createSlice({

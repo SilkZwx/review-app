@@ -30,12 +30,15 @@ export const PostEdit = () => {
         setLink(res.data.url);
         setDetail(res.data.detail);
         setReview(res.data.review);
+        if (!res.data.isMine) {
+          navigate(`/detail/${id}`);
+        }
         setIsLoading(false);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [id]);
+  }, [id, url, auth, navigate]);
 
   const handleUpdateClick = () => {
     const data = {
